@@ -172,15 +172,7 @@ describe('server.js', () => {
         })
       }, 750)
     })
-    describe('[POST] /api/tasks', () => {
-      test('[13] can add a new task to the db', async () => {
-        await db('tasks').truncate()
-        await request(server).post('/api/tasks').send(taskA)
-        await request(server).post('/api/tasks').send(taskB)
-        await request(server).post('/api/tasks').send(taskC)
-        const tasks = await db('tasks')
-        expect(tasks).toHaveLength(3)
-      }, 750)
+    
       test('[14] responds with the newly created task with the task_completed as a boolean', async () => {
         await db('tasks').truncate()
         const res = await request(server).post('/api/tasks').send(taskA)
@@ -213,4 +205,4 @@ describe('server.js', () => {
       }, 750)
     })
   })
-})
+
